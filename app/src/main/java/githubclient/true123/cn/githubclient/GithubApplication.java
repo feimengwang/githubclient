@@ -7,11 +7,12 @@ import android.app.Application;
  */
 public class GithubApplication extends Application {
     private static GithubApplication githubApplication;
-
+    private AppComponent appComponent;
     @Override
     public void onCreate() {
         super.onCreate();
         init();
+        initComponent();
     }
 
     private void init() {
@@ -20,5 +21,12 @@ public class GithubApplication extends Application {
 
     public static GithubApplication getGithubApplicationContext() {
         return githubApplication;
+    }
+
+    public void initComponent() {
+        appComponent=  DaggerAppComponent.builder().build();
+    }
+    public AppComponent getAppComponent(){
+        return appComponent;
     }
 }
