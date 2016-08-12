@@ -13,23 +13,26 @@ import retrofit2.Retrofit;
  */
 @Module
 public class GithubServiceModule {
+    public GithubServiceModule(){
+
+    }
 
     @Provides
     @Singleton
     public OkHttpClient provideOkHttpClient() {
-        return GithubManager.getOkHttpClient();
+        return GithubManager.newInstance().getOkHttpClient();
     }
 
     @Provides
     @Singleton
     public Retrofit provideRetrofit(OkHttpClient okHttpClient) {
-        return GithubManager.getRetrofit(okHttpClient, Constant.BASE_URL);
+        return GithubManager.newInstance().getRetrofit(okHttpClient, Constant.BASE_URL);
     }
 
     @Provides
     @Singleton
     public GithubService provideGitHubService(Retrofit retrofit) {
-        return GithubManager.getGithubService(retrofit);
+        return GithubManager.newInstance().getGithubService(retrofit);
     }
 
     @Provides

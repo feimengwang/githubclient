@@ -30,27 +30,27 @@ public class MLog {
         return false;
     }
 
-    public static void i(Class clazz, String msg) {
+    public static void i(Object clazz, String msg) {
         if (isLog(LEVEL.INFO)) {
-            Log.i(TAG, clazz.getSimpleName() + " - " + msg);
+            Log.i(TAG, clazz.getClass().getSimpleName() + " - " + msg);
         }
     }
 
-    public static void e(Class clazz, String msg) {
+    public static void e(Object clazz, String msg) {
         if (isLog(LEVEL.INFO)) {
-            Log.e(TAG, clazz.getSimpleName() + " - " + msg);
+            Log.e(TAG, clazz.getClass().getSimpleName() + " - " + msg);
         }
     }
 
-    public static void w(Class clazz, String msg) {
+    public static void w(Object clazz, String msg) {
         if (isLog(LEVEL.INFO)) {
-            Log.w(TAG, clazz.getSimpleName() + " - " + msg);
+            Log.w(TAG, clazz.getClass().getSimpleName() + " - " + msg);
         }
     }
 
-    public static void d(Class clazz, String msg) {
+    public static void d(Object clazz, String msg) {
         if (isLog(LEVEL.INFO)) {
-            Log.d(TAG, clazz.getSimpleName() + " - " + msg);
+            Log.d(TAG, clazz.getClass().getSimpleName() + " - " + msg);
         }
     }
 }

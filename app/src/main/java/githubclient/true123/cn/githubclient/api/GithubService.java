@@ -15,13 +15,13 @@ import rx.Observable;
  */
 public interface GithubService {
     //https://api.github.com/repos/{owner}/{repo}
-    @GET("repos/{owner}/{repo}")
+    @GET("/repos/{owner}/{repo}")
     Observable<RepositoryItem> getRepositoryItem(@Path("owner") String user, @Path("repo") String repo);
 
-    @GET("users/{userName}/repos")
+    @GET("/users/{userName}/repos")
     Observable<List<Repository>> getUserRepositories(@Path("userName") String userName);
 
-    @GET("users/{userName}")
+    @GET("/users/{userName}")
     Observable<User> getUser(@Path("userName") String userName);
 
 }

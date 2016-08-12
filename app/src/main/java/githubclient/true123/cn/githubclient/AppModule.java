@@ -1,5 +1,7 @@
 package githubclient.true123.cn.githubclient;
 
+import android.app.Application;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -10,15 +12,21 @@ import dagger.Provides;
  */
 @Module
 public class AppModule {
-    private GithubApplication githubApplication;
+    private Application application;
 
-    AppModule(GithubApplication githubApplication) {
-        this.githubApplication = githubApplication;
+    public AppModule(Application application) {
+        this.application = application;
     }
 
     @Provides
     @Singleton
-    public GithubApplication provideGithubApplication() {
-        return githubApplication;
+    public Application provideApplication() {
+        return application;
+    }
+
+    @Provides
+    @Singleton
+    public Validator provideValidator() {
+        return new Validator(application);
     }
 }

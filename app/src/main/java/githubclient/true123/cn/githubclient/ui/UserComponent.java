@@ -7,7 +7,9 @@ import githubclient.true123.cn.githubclient.ui.module.SplashModule;
 /**
  * Created by junbo on 9/8/2016.
  */
-@Subcomponent(modules = UserModule.class)
+@UserScope
+@Subcomponent
 public interface UserComponent {
     SplashComponent plus(SplashModule splashModule);
+
 }

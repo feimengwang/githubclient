@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Githubclient</string>
+    <string name="notEmpty">不能为空</string>
 </resources>

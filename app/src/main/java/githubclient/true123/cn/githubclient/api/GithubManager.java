@@ -18,8 +18,16 @@ import retrofit2.RxJavaCallAdapterFactory;
  * Created by junbo on 9/8/2016.
  */
 public class GithubManager {
+    private static GithubManager githubManager = new GithubManager();
+    public static GithubManager newInstance(){
+        return githubManager;
+    }
 
-    public static OkHttpClient getOkHttpClient() {
+    private GithubManager(){
+
+    }
+
+    public  OkHttpClient getOkHttpClient() {
         return new OkHttpClient.Builder()
                 .connectTimeout(1000 * 60, TimeUnit.MILLISECONDS)
                 .readTimeout(1000 * 60, TimeUnit.MILLISECONDS)
@@ -32,13 +40,13 @@ public class GithubManager {
                         CacheControl cacheControl = cacheBuilder.build();
 
                         Request request = chain.request();
-                        if (!StateUtils.isNetworkAvailable(GithubApplication.getGithubApplicationContext())) {
+                        if (!StateUtils.isNetworkAvailable(GithubApplication.getGithubApplication())) {
                             request = request.newBuilder()
                                     .cacheControl(cacheControl)
                                     .build();
                         }
                         Response originalResponse = chain.proceed(request);
-                        if (StateUtils.isNetworkAvailable(GithubApplication.getGithubApplicationContext())) {
+                        if (StateUtils.isNetworkAvailable(GithubApplication.getGithubApplication())) {
                             int maxAge = 0; // read from cache
                             return originalResponse.newBuilder()
                                     .removeHeader("Pragma")
@@ -56,7 +64,7 @@ public class GithubManager {
                 .build();
     }
 
-    public static Retrofit getRetrofit(OkHttpClient okHttpClient, String baseUrl) {
+    public  Retrofit getRetrofit(OkHttpClient okHttpClient, String baseUrl) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)
@@ -65,7 +73,7 @@ public class GithubManager {
                 .build();
     }
 
-    public static GithubService getGithubService(Retrofit retrofit) {
+    public  GithubService getGithubService(Retrofit retrofit) {
         return retrofit.create(GithubService.class);
     }
 }

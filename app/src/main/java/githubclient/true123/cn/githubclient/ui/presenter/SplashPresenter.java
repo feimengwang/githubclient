@@ -2,6 +2,7 @@ package githubclient.true123.cn.githubclient.ui.presenter;
 
 import githubclient.true123.cn.githubclient.api.UserManger;
 import githubclient.true123.cn.githubclient.ui.views.BaseView;
+import githubclient.true123.cn.githubclient.util.MLog;
 import rx.Observable;
 
 /**
@@ -10,10 +11,6 @@ import rx.Observable;
 public class SplashPresenter extends BasePresenter {
     String userName;
     UserManger userManger;
-
-    SplashPresenter(BaseView baseView) {
-        super(baseView);
-    }
 
     public SplashPresenter(BaseView baseView, UserManger userManger) {
         super(baseView);
@@ -27,6 +24,8 @@ public class SplashPresenter extends BasePresenter {
 
     @Override
     public Observable getObservable() {
-        return null;
+        MLog.i(this,"getObservable"+userName);
+        return userManger.getUser(userName);
+
     }
 }
