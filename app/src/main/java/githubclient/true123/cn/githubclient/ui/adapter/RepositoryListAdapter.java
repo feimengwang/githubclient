@@ -11,6 +11,7 @@ import java.util.Map;
 
 import githubclient.true123.cn.githubclient.bean.Repository;
 import githubclient.true123.cn.githubclient.ui.views.RepositoryListView;
+import githubclient.true123.cn.githubclient.util.MLog;
 
 /**
  * Created by junbo on 14/8/2016.
@@ -28,7 +29,8 @@ public class RepositoryListAdapter extends RecyclerView.Adapter {
     }
 
     public void update(List data) {
-        this.data = data;
+        this.data.clear();
+        this.data.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -63,6 +65,7 @@ public class RepositoryListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
+        MLog.i(this,"getItemCount"+data.size());
         return data.size();
     }
 }
