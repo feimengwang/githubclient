@@ -26,8 +26,8 @@ public abstract class BasePresenter {
         baseView = null;
     }
 
-    public Observer<BaseBean> getSubscriber() {
-        return new Subscriber<BaseBean>() {
+    public Observer<Object> getSubscriber() {
+        return new Subscriber<Object>() {
             @Override
             public void onCompleted() {
                 MLog.i(this,"onCompleted");
@@ -40,7 +40,7 @@ public abstract class BasePresenter {
             }
 
             @Override
-            public void onNext(BaseBean base) {
+            public void onNext(Object base) {
                 MLog.i(this,"onNext"+base);
                 if (baseView != null) baseView.onLoad(base);
             }

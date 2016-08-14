@@ -2,6 +2,7 @@ package githubclient.true123.cn.githubclient.ui.activities;
 
 import android.app.Application;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,6 +14,7 @@ import githubclient.true123.cn.githubclient.GithubApplication;
 import githubclient.true123.cn.githubclient.R;
 import githubclient.true123.cn.githubclient.Validator;
 import githubclient.true123.cn.githubclient.api.UserManger;
+import githubclient.true123.cn.githubclient.bean.User;
 import githubclient.true123.cn.githubclient.ui.module.SplashModule;
 import githubclient.true123.cn.githubclient.ui.presenter.SplashPresenter;
 import githubclient.true123.cn.githubclient.ui.views.SplashView;
@@ -78,7 +80,11 @@ public class SplashActivity extends BaseActivity implements SplashView {
     @Override
     public void onLoad(Object o) {
         if (o != null) {
-            startActivity(new Intent(this, RepositoryListActivity.class));
+            Intent intent = new Intent(this, RepositoryListActivity.class);
+            Bundle b=new Bundle();
+            b.putString("name",((User)o).getLogin());
+            intent.putExtras(b);
+            startActivity(intent);
         } else {
             MLog.e(this, "onload error");
         }

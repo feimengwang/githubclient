@@ -27,19 +27,19 @@ public class UserManger {
         MLog.i("UserManager",userName);
         return githubService.getUser(userName)
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<List<Repository>> getRepositories(User user) {
         return githubService.getUserRepositories(user.getLogin())
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<RepositoryItem> getRepositoryItem(String userName, String repName) {
         return githubService.getRepositoryItem(userName, repName)
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
 
