@@ -12,8 +12,8 @@ import githubclient.true123.cn.githubclient.bean.Repository;
  */
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    public BaseViewHolder(View itemView) {
-        super(itemView);
+    public BaseViewHolder(View parent) {
+        super(parent);
         ButterKnife.bind(this,itemView);
     }
 

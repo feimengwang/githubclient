@@ -57,6 +57,7 @@ public class RepositoryListActivity extends BaseActivity implements RepositoryLi
         MLog.i(this,"presenter="+presenter);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new LineDecoration());
         presenter.onLoadRepositories();
     }
 

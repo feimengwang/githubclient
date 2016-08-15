@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.google.auto.factory.AutoFactory;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import githubclient.true123.cn.githubclient.R;
 import githubclient.true123.cn.githubclient.bean.Repository;
 
@@ -19,10 +20,12 @@ public class NormalViewHolder extends BaseViewHolder {
     @Bind(R.id.repository_name)
     TextView repName;
 
-    public NormalViewHolder(View itemView) {
+    public NormalViewHolder(View parent) {
 
-        super(LayoutInflater.from(itemView.getContext())
-                .inflate(R.layout.recycler_item_normal, (ViewGroup) itemView, false));
+        super(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recycler_item_normal, (ViewGroup) parent, false));
+       // ButterKnife.bind(this,itemView);
+
     }
 
     @Override
