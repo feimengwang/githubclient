@@ -13,7 +13,6 @@ import butterknife.Bind;
 import githubclient.true123.cn.githubclient.GithubApplication;
 import githubclient.true123.cn.githubclient.R;
 import githubclient.true123.cn.githubclient.bean.Repository;
-import githubclient.true123.cn.githubclient.bean.User;
 import githubclient.true123.cn.githubclient.ui.adapter.RepositoryListAdapter;
 import githubclient.true123.cn.githubclient.ui.module.RepositoryListModule;
 import githubclient.true123.cn.githubclient.ui.presenter.RepositoryListPresenter;
@@ -33,28 +32,26 @@ public class RepositoryListActivity extends BaseActivity implements RepositoryLi
 
     @Override
     protected void initComponent() {
-        User u = null;
+        String userName = null;
         Intent intent = getIntent();
         MLog.i(this, "getIntent = " + getIntent());
         if (intent != null) {
             Bundle b = intent.getExtras();
             MLog.i(this, "b = " + b);
             if (b != null) {
-                String userName = b.getString("name");
-                MLog.i(this, "userName = " + userName);
-                u = new User();
-                u.setLogin(userName);
+                userName = b.getString("name");
+
             }
         }
-        MLog.i(this, "user = " + u.getLogin());
+        MLog.i(this, "user = " + userName);
         GithubApplication.getGithubApplication(this).getUserComponent()
-                .plus(new RepositoryListModule(this, u)).inject(this);
+                .plus(new RepositoryListModule(this, userName)).inject(this);
     }
 
     @Override
     protected void initView() {
-        MLog.i(this,"adapter="+adapter);
-        MLog.i(this,"presenter="+presenter);
+        MLog.i(this, "adapter=" + adapter);
+        MLog.i(this, "presenter=" + presenter);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new LineDecoration());
@@ -87,6 +84,6 @@ public class RepositoryListActivity extends BaseActivity implements RepositoryLi
 
     @Override
     public void onItemClick(Repository repository) {
-
+        presenter.onItemClick(repository);
     }
 }

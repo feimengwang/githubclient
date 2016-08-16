@@ -1,7 +1,5 @@
 package githubclient.true123.cn.githubclient.ui.module;
 
-import com.google.auto.factory.AutoFactory;
-
 import java.util.Map;
 
 import javax.inject.Named;
@@ -11,7 +9,6 @@ import dagger.Provides;
 import dagger.multibindings.IntKey;
 import dagger.multibindings.IntoMap;
 import githubclient.true123.cn.githubclient.api.UserManger;
-import githubclient.true123.cn.githubclient.bean.User;
 import githubclient.true123.cn.githubclient.ui.ActivityScope;
 import githubclient.true123.cn.githubclient.ui.adapter.GreatViewHolderFactory;
 import githubclient.true123.cn.githubclient.ui.adapter.NormalViewHolderFactory;
@@ -26,17 +23,19 @@ import githubclient.true123.cn.githubclient.ui.views.RepositoryListView;
 @Module
 public class RepositoryListModule {
     private RepositoryListView repositoryListView;
-    private User user;
+    private String userName;
 
-    public RepositoryListModule(RepositoryListView repositoryListView, User user) {
+
+    public RepositoryListModule(RepositoryListView repositoryListView, String userName) {
         this.repositoryListView = repositoryListView;
-        this.user = user;
+        this.userName = userName;
     }
 
     @Provides
+    @Named("userName")
     @ActivityScope
-    User provideUser() {
-        return user;
+    String provideUserName() {
+        return userName;
     }
 
     @Provides
@@ -47,8 +46,8 @@ public class RepositoryListModule {
 
     @Provides
     @ActivityScope
-    RepositoryListPresenter provideRepositoryListPresenter(UserManger userManger, User user, RepositoryListView repositoryListView ) {
-        return new RepositoryListPresenter(userManger, user.getLogin(), repositoryListView);
+    RepositoryListPresenter provideRepositoryListPresenter(UserManger userManger, RepositoryListView repositoryListView) {
+        return new RepositoryListPresenter(userManger, userName, repositoryListView);
     }
 
     @Provides
@@ -69,7 +68,7 @@ public class RepositoryListModule {
 
     @Provides
     @ActivityScope
-    RepositoryListAdapter provideRepositoryListAdapter(RepositoryListView repositoryListView,Map<Integer,ViewHolderFactory> factoryMap){
-        return new RepositoryListAdapter(repositoryListView,factoryMap);
+    RepositoryListAdapter provideRepositoryListAdapter(RepositoryListView repositoryListView, Map<Integer, ViewHolderFactory> factoryMap) {
+        return new RepositoryListAdapter(repositoryListView, factoryMap);
     }
 }

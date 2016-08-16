@@ -30,8 +30,8 @@ public class UserManger {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<List<Repository>> getRepositories(User user) {
-        return githubService.getUserRepositories(user.getLogin())
+    public Observable<List<Repository>> getRepositories(String userName) {
+        return githubService.getUserRepositories(userName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
