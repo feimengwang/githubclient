@@ -12,6 +12,7 @@ import githubclient.true123.cn.githubclient.R;
 import githubclient.true123.cn.githubclient.ui.module.RepositoryDetailModule;
 import githubclient.true123.cn.githubclient.ui.presenter.RepositoryDetailPresenter;
 import githubclient.true123.cn.githubclient.ui.views.RepositoryDetailView;
+import githubclient.true123.cn.githubclient.util.MLog;
 
 /**
  * Created by junbo on 10/8/2016.
@@ -35,6 +36,7 @@ public class RepositoryDetailActivity extends BaseActivity implements Repository
 
             }
         }
+        MLog.i(this,"userName="+userName+";repostoryName="+repositoryName);
         GithubApplication.getGithubApplication(this).getUserComponent()
                 .plus(new RepositoryDetailModule(this, userName, repositoryName)).inject(this);
     }
